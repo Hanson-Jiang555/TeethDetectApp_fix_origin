@@ -1,0 +1,178 @@
+.page-profile {
+  min-height: 100vh;
+  background: #F0F5FF;
+  padding-bottom: 140rpx;
+}
+
+.profile-header {
+  position: relative;
+  height: 360rpx;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 32rpx 40rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255,255,255,0.5);
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+}
+
+.user-name {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+}
+
+.user-gender {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.8);
+  margin-top: 6rpx;
+  display: block;
+}
+
+.login-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-placeholder {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: 4rpx dashed rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.avatar-placeholder text {
+  font-size: 64rpx;
+}
+
+.login-text {
+  font-size: 32rpx;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: flex;
+  margin: -24rpx 24rpx 24rpx;
+  gap: 16rpx;
+}
+
+.stat-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 24rpx rgba(37, 99, 235, 0.08);
+}
+
+.stat-emoji {
+  font-size: 36rpx;
+  margin-bottom: 12rpx;
+}
+
+.stat-num {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #1E293B;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #6B7280;
+  margin-top: 6rpx;
+}
+
+.menu-card {
+  margin: 0 24rpx 24rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 8rpx;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1E293B;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #D1D5DB;
+}
+
+.menu-divider {
+  height: 1rpx;
+  background: #F0F0F0;
+  margin: 0 8rpx;
+}
+
+.logout-btn {
+  text-align: center;
+  padding: 24rpx;
+  color: #EF4444;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.logout-btn:active {
+  opacity: 0.7;
+}
+
+.app-info {
+  text-align: center;
+  padding: 32rpx;
+}
+
+.version {
+  font-size: 24rpx;
+  color: #9CA3AF;
+  display: block;
+}
+
+.copyright {
+  font-size: 22rpx;
+  color: #D1D5DB;
+  margin-top: 8rpx;
+  display: block;
+}

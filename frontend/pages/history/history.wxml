@@ -1,30 +1,107 @@
-﻿<view class="container">
-  <view wx:if="{{history.length === 0}}" class="empty">
-    <text class="empty-icon">📋</text>
-    <text class="empty-text">暂无检测记录</text>
-    <text class="empty-sub">去拍照检测你的口腔健康吧</text>
-    <view class="btn-primary" style="margin-top:40rpx;width:60%;" bindtap="goCamera">去检测</view>
+<view class="page-history">
+  <!-- Trend Chart -->
+  <view class="card trend-card fade-in" wx:if="{{history.length > 0}}">
+    <view class="section-title">
+      <view class="icon"></view>
+      <text>健康趋势</text>
+    </view>
+    <view class="chart-area">
+      <canvas canvas-id="trendChart" id="trendChart" class="trend-canvas" wx:if="{{history.length >= 2}}"></canvas>
+      <view class="chart-placeholder" wx:if="{{history.length < 2}}">
+        <text class="placeholder-icon">📊</text>
+        <text class="placeholder-text">完成至少2次检测后显示趋势</text>
+      </view>
+    </view>
+    <view class="trend-summary">
+      <view class="trend-item">
+        <text class="trend-label">最高分</text>
+        <text class="trend-value trend-high">{{maxScore}}</text>
+      </view>
+      <view class="trend-item">
+        <text class="trend-label">最低分</text>
+        <text class="trend-value trend-low">{{minScore}}</text>
+      </view>
+      <view class="trend-item">
+        <text class="trend-label">平均分</text>
+        <text class="trend-value">{{avgScore}}</text>
+      </view>
+      <view class="trend-item">
+        <text class="trend-label">检测次数</text>
+        <text class="trend-value">{{history.length}}</text>
+      </view>
+    </view>
   </view>
 
-  <view wx:else>
-    <view class="card history-card" wx:for="{{history}}" wx:key="index" bindtap="viewDetail" data-index="{{index}}">
-      <view class="history-header">
-        <view class="history-severity severity-{{item.overall_severity}}">
-          <text>{{item.emoji || severityEmoji(item.overall_severity)}}</text>
-        </view>
-        <view class="history-info">
-          <text class="history-title">{{severityLabel(item.overall_severity)}}</text>
-          <text class="history-time">{{item.timestamp}}</text>
-        </view>
-        <text class="arrow">›</text>
+  <!-- History List -->
+  <view class="card fade-in" wx:if="{{history.length > 0}}">
+    <!-- Header with batch mode -->
+    <view class="list-header">
+      <view class="section-title" style="margin-bottom:0">
+        <view class="icon"></view>
+        <text>检测记录</text>
       </view>
-      <view class="history-detections" wx:if="{{item.detected_classes && item.detected_classes.length > 0}}">
-        <text class="tag" wx:for="{{item.detected_classes}}" wx:for-item="cls" wx:key="*this">{{cls}}</text>
+      <view class="header-actions">
+        <view class="action-btn" bindtap="toggleBatch" wx:if="{{!batchMode}}">
+          <text>管理</text>
+        </view>
+        <view class="action-btn batch-active" wx:if="{{batchMode}}">
+          <text bindtap="selectAll">{{allSelected ? '取消全选' : '全选'}}</text>
+        </view>
+        <view class="action-btn danger" bindtap="batchDelete" wx:if="{{batchMode && selectedCount > 0}}">
+          <text>删除({{selectedCount}})</text>
+        </view>
+        <view class="action-btn" bindtap="toggleBatch" wx:if="{{batchMode}}">
+          <text>完成</text>
+        </view>
       </view>
     </view>
 
-    <view class="clear-btn" bindtap="clearHistory">
-      <text>🗑️ 清除全部记录</text>
+    <view class="history-list">
+      <view class="history-item {{item.selected ? 'selected' : ''}}" wx:for="{{history}}" wx:key="index">
+        <!-- Checkbox in batch mode -->
+        <view class="checkbox" wx:if="{{batchMode}}" bindtap="toggleSelect" data-index="{{index}}">
+          <view class="checkbox-inner {{item.selected ? 'checked' : ''}}">
+            <text wx:if="{{item.selected}}">✓</text>
+          </view>
+        </view>
+
+        <view class="item-content" bindtap="{{batchMode ? 'toggleSelect' : 'viewDetail'}}" data-index="{{index}}">
+          <view class="item-left">
+            <view class="item-avatar status-{{item.severityKey}}">
+              <text>{{item.emoji}}</text>
+            </view>
+            <view class="item-info">
+              <text class="item-status">{{item.statusText}}</text>
+              <text class="item-date">{{item.dateStr}}</text>
+              <text class="item-detail" wx:if="{{item.detectedClasses}}">{{item.detectedClasses}}</text>
+            </view>
+          </view>
+          <view class="item-right">
+            <text class="item-score score-{{item.severityKey}}">{{item.score}}</text>
+            <text class="item-unit">分</text>
+          </view>
+        </view>
+
+        <!-- Action buttons -->
+        <view class="item-actions" wx:if="{{!batchMode}}">
+          <view class="action-icon" bindtap="downloadItem" data-index="{{index}}" hover-class="action-icon-active">
+            <text>📥</text>
+          </view>
+          <view class="action-icon danger" bindtap="deleteItem" data-index="{{index}}" hover-class="action-icon-active">
+            <text>🗑️</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty -->
+  <view class="card fade-in" wx:if="{{history.length === 0}}">
+    <view class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text class="empty-title">暂无检测记录</text>
+      <text class="empty-desc">完成第一次检测后，记录将显示在这里</text>
+      <view class="btn-primary" bindtap="goDetect" style="margin-top:48rpx;width:320rpx">去检测</view>
     </view>
   </view>
 </view>

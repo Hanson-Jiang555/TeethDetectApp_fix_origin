@@ -1,24 +1,75 @@
-﻿/**app.wxss**/
+/**app.wxss - SmileGuard 护齿管家 全局样式**/
+
 page {
-  background-color: #f5f7fa;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #F0F5FF;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  color: #1E293B;
+  font-size: 28rpx;
+  --primary: #2563EB;
+  --primary-light: #DBEAFE;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --orange: #F97316;
+  --bg: #F0F5FF;
+  --card: #FFFFFF;
+  --text: #1E293B;
+  --text-secondary: #64748B;
+  --border: #E2E8F0;
+  --shadow: 0 4rpx 24rpx rgba(37, 99, 235, 0.08);
+  --radius: 24rpx;
 }
 
 .container {
-  padding: 30rpx;
+  padding: 24rpx;
+  padding-bottom: 140rpx;
 }
 
 .card {
-  background: #fff;
-  border-radius: 20rpx;
-  padding: 30rpx;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32rpx;
   margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06);
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.section-title .icon {
+  width: 8rpx;
+  height: 32rpx;
+  background: var(--primary);
+  border-radius: 4rpx;
+  margin-right: 16rpx;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #4A90D9, #357ABD);
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
   color: #fff;
+  border: none;
+  border-radius: 50rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 2rpx;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: var(--primary-light);
+  color: var(--primary);
   border: none;
   border-radius: 50rpx;
   padding: 24rpx 0;
@@ -27,13 +78,56 @@ page {
   text-align: center;
 }
 
-.btn-primary:active {
-  opacity: 0.85;
+.btn-secondary:active {
+  opacity: 0.7;
 }
 
-.section-title {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 20rpx;
+.tag {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
 }
+
+.tag-success { background: #D1FAE5; color: #065F46; }
+.tag-warning { background: #FEF3C7; color: #92400E; }
+.tag-danger { background: #FEE2E2; color: #991B1B; }
+.tag-info { background: #DBEAFE; color: #1E40AF; }
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+}
+
+.empty-state .icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-state .text {
+  color: var(--text-secondary);
+  font-size: 28rpx;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fade-in { animation: fadeIn 0.4s ease-out; }
+.pulse { animation: pulse 2s ease-in-out infinite; }
+.spin { animation: spin 1s linear infinite; }

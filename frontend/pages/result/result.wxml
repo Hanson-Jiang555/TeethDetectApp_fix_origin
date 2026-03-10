@@ -1,53 +1,107 @@
-﻿<view class="container">
-  <!-- 总体评分 -->
-  <view class="score-card card">
-    <view class="score-circle severity-{{overallSeverity}}">
-      <text class="score-emoji">{{emoji}}</text>
-      <text class="score-number">{{severityScore}}</text>
-      <text class="score-label">{{severityLabel}}</text>
+<view class="page-result">
+  <!-- Report Header -->
+  <view class="report-header header-{{severityKey}}">
+    <view class="report-badge">
+      <text class="badge-icon">{{emoji}}</text>
     </view>
+    <view class="score-display">
+      <text class="score-num">{{severityScore}}</text>
+      <text class="score-max">/100</text>
+    </view>
+    <text class="score-label">{{scoreLabel}}</text>
+    <text class="report-time">{{dateStr}}</text>
+    <text class="report-id">报告编号: {{reportId}}</text>
   </view>
 
-  <!-- 检测结果详情 -->
-  <view class="card" wx:if="{{detections.length > 0}}">
-    <text class="section-title">🔍 检测详情</text>
-    <view class="detection-item" wx:for="{{detections}}" wx:key="index">
-      <view class="det-header">
-        <text class="det-class">{{item.class_name}}</text>
-        <view class="severity-tag severity-{{item.severity}}">
-          <text>{{item.severityLabel}}</text>
+  <!-- Detection Image with bounding boxes -->
+  <view class="card fade-in" wx:if="{{photoPath}}">
+    <view class="section-title">
+      <view class="icon"></view>
+      <text>检测图片</text>
+    </view>
+    <view class="detection-image-wrap">
+      <image src="{{photoPath}}" mode="aspectFit" class="detection-image" bindload="onImageLoad"></image>
+      <!-- Bounding box overlays -->
+      <view class="bbox-container" style="width:{{imgDisplayWidth}}rpx;height:{{imgDisplayHeight}}rpx" wx:if="{{imgLoaded && detections.length > 0}}">
+        <view class="bbox-item" wx:for="{{detections}}" wx:key="index"
+              style="left:{{item.boxLeft}}rpx;top:{{item.boxTop}}rpx;width:{{item.boxWidth}}rpx;height:{{item.boxHeight}}rpx;border-color:{{item.boxColor}}">
+          <view class="bbox-tag" style="background:{{item.boxColor}}">
+            <text class="bbox-tag-icon">{{item.icon}}</text>
+            <text class="bbox-tag-text">{{item.cn_name}}</text>
+            <text class="bbox-tag-conf">{{item.confPercent}}%</text>
+          </view>
         </view>
       </view>
-      <view class="det-bar">
-        <view class="det-bar-fill" style="width: {{item.confidence * 100}}%"></view>
+    </view>
+  </view>
+
+  <!-- Detection Results -->
+  <view class="card fade-in" wx:if="{{detections.length > 0}}">
+    <view class="section-title">
+      <view class="icon"></view>
+      <text>问题详情</text>
+    </view>
+    <view class="detection-list">
+      <view class="detection-item" wx:for="{{detections}}" wx:key="index">
+        <view class="det-left">
+          <view class="det-icon-wrap" style="background:{{item.boxColor}}20">
+            <text class="det-icon">{{item.icon}}</text>
+          </view>
+          <view class="det-info">
+            <text class="det-name">{{item.cn_name}}</text>
+            <text class="det-desc">{{item.description}}</text>
+          </view>
+        </view>
+        <view class="det-right">
+          <text class="det-conf">{{item.confPercent}}%</text>
+          <view class="tag tag-{{item.severityKey}}">{{item.severityLabel}}</view>
+        </view>
       </view>
-      <text class="det-conf">置信度: {{(item.confidence * 100).toFixed(1)}}%</text>
     </view>
   </view>
 
-  <!-- 未检测到问题 -->
-  <view class="card" wx:if="{{detections.length === 0}}">
-    <view class="empty-result">
-      <text class="empty-icon">🎉</text>
-      <text class="empty-text">恭喜！未检测到明显口腔问题</text>
-      <text class="empty-sub">请保持良好的口腔卫生习惯</text>
+  <!-- Healthy -->
+  <view class="card fade-in" wx:if="{{detections.length === 0}}">
+    <view class="healthy-result">
+      <text class="healthy-icon">🎉</text>
+      <text class="healthy-title">牙齿状态良好</text>
+      <text class="healthy-desc">未检测到明显的口腔问题，请继续保持良好的口腔卫生习惯！</text>
     </view>
   </view>
 
-  <!-- 医生建议 -->
-  <view class="card advice-card">
-    <text class="section-title">👨‍⚕️ 建议</text>
-    <text class="advice-text">{{advice}}</text>
+  <!-- Advice -->
+  <view class="card advice-card fade-in">
+    <view class="section-title">
+      <view class="icon"></view>
+      <text>💡 健康建议</text>
+    </view>
+    <view class="advice-list" wx:if="{{adviceList.length > 0}}">
+      <view class="advice-item" wx:for="{{adviceList}}" wx:key="index">
+        <text class="advice-num">{{index + 1}}</text>
+        <text class="advice-text">{{item}}</text>
+      </view>
+    </view>
+    <text class="advice-text" wx:if="{{adviceList.length === 0}}">{{advice}}</text>
     <text class="detail-text" wx:if="{{detail}}">{{detail}}</text>
   </view>
 
-  <!-- 底部操作 -->
-  <view class="bottom-actions">
-    <view class="btn-primary" bindtap="goCamera">重新检测</view>
-    <view class="btn-secondary bottom-btn" bindtap="goHome">返回首页</view>
+  <!-- Download Report -->
+  <view class="card fade-in">
+    <view class="download-btn" bindtap="downloadReport">
+      <text class="download-icon">📥</text>
+      <text class="download-text">下载检测报告</text>
+    </view>
   </view>
 
-  <view class="disclaimer">
-    <text>⚠️ 以上结果仅供参考，不能替代专业医生诊断</text>
+  <!-- Actions -->
+  <view class="bottom-actions fade-in">
+    <view class="btn-primary" bindtap="detectAgain" style="flex:1;margin-right:16rpx">再次检测</view>
+    <view class="btn-secondary" bindtap="goHome" style="flex:1">返回首页</view>
+  </view>
+
+  <!-- Disclaimer -->
+  <view class="disclaimer-card fade-in">
+    <text class="disclaimer-title">⚠️ 免责声明</text>
+    <text class="disclaimer-text">以上检测报告由AI模型自动生成，仅供口腔健康初步筛查参考，不能替代专业牙科医生的临床诊断和治疗方案。检测结果受拍照角度、光线条件等因素影响，可能存在误差。如发现口腔不适或异常，请及时前往正规口腔医疗机构就诊。</text>
   </view>
 </view>
