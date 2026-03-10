@@ -1,0 +1,63 @@
+﻿.header {
+  text-align: center;
+  padding: 60rpx 0 40rpx;
+}
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 800;
+  color: #4A90D9;
+  margin-bottom: 16rpx;
+}
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #999;
+}
+.feature-card {
+  display: flex;
+  align-items: center;
+  padding: 36rpx 30rpx;
+}
+.feature-icon {
+  font-size: 56rpx;
+  margin-right: 24rpx;
+}
+.feature-info {
+  flex: 1;
+}
+.feature-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.feature-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+.arrow {
+  font-size: 40rpx;
+  color: #ccc;
+}
+.tips-card .tip-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+.tip-dot {
+  font-weight: 700;
+  color: #4A90D9;
+  margin-right: 12rpx;
+}
+.disclaimer {
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 20rpx;
+}
+.disclaimer-text {
+  font-size: 22rpx;
+  color: #cc6666;
+}

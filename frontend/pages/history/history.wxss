@@ -1,0 +1,27 @@
+﻿.empty { text-align: center; padding: 120rpx 30rpx; }
+.empty-icon { font-size: 80rpx; display: block; }
+.empty-text { display: block; font-size: 34rpx; font-weight: 600; color: #333; margin: 20rpx 0 12rpx; }
+.empty-sub { display: block; font-size: 26rpx; color: #999; }
+.history-card { padding: 28rpx 30rpx; }
+.history-header { display: flex; align-items: center; }
+.history-severity {
+  width: 72rpx; height: 72rpx; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36rpx; margin-right: 20rpx;
+}
+.history-severity.severity-healthy { background: #e8f5e9; }
+.history-severity.severity-mild { background: #fff8e1; }
+.history-severity.severity-medium { background: #fff3e0; }
+.history-severity.severity-severe { background: #fce4ec; }
+.history-info { flex: 1; }
+.history-title { display: block; font-size: 30rpx; font-weight: 600; color: #333; }
+.history-time { display: block; font-size: 22rpx; color: #bbb; margin-top: 6rpx; }
+.arrow { font-size: 36rpx; color: #ccc; }
+.history-detections { margin-top: 16rpx; }
+.tag {
+  display: inline-block; padding: 4rpx 16rpx; margin: 4rpx;
+  background: #eef3fb; color: #4A90D9; border-radius: 20rpx;
+  font-size: 22rpx;
+}
+.clear-btn { text-align: center; padding: 40rpx; }
+.clear-btn text { color: #cc6666; font-size: 26rpx; }

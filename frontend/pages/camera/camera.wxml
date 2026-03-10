@@ -1,0 +1,56 @@
+﻿<view class="container">
+  <!-- 拍照指引 -->
+  <view class="guide-card card" wx:if="{{!photoPath && !analyzing}}">
+    <text class="section-title">📸 拍照指引</text>
+    <view class="guide-step {{step >= 1 ? 'active' : ''}}">
+      <text class="step-num">1</text>
+      <text>确保面部在画面中</text>
+      <text wx:if="{{step >= 1}}" class="check">✅</text>
+    </view>
+    <view class="guide-step {{step >= 2 ? 'active' : ''}}">
+      <text class="step-num">2</text>
+      <text>张大嘴巴，露出牙齿</text>
+      <text wx:if="{{step >= 2}}" class="check">✅</text>
+    </view>
+    <view class="guide-step {{step >= 3 ? 'active' : ''}}">
+      <text class="step-num">3</text>
+      <text>保持光线充足，对焦清晰</text>
+      <text wx:if="{{step >= 3}}" class="check">✅</text>
+    </view>
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-card card" wx:if="{{errorMsg}}">
+    <text class="error-icon">⚠️</text>
+    <text class="error-text">{{errorMsg}}</text>
+    <view class="btn-primary" bindtap="retryPhoto">重新拍照</view>
+  </view>
+
+  <!-- 图片预览 -->
+  <view class="preview-card" wx:if="{{photoPath && !analyzing}}">
+    <image src="{{photoPath}}" mode="aspectFit" class="preview-img"></image>
+    <view class="preview-actions">
+      <view class="btn-secondary" bindtap="retakePhoto">重新拍照</view>
+      <view class="btn-primary action-btn" bindtap="startAnalyze">开始检测</view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-card card" wx:if="{{analyzing}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">🤖 AI 正在分析中...</text>
+    <text class="loading-sub">预计需要 5-10 秒</text>
+  </view>
+
+  <!-- 底部拍照按钮（无照片时显示） -->
+  <view class="camera-area" wx:if="{{!photoPath && !analyzing && !errorMsg}}">
+    <view class="camera-btn" bindtap="takePhoto">
+      <text class="camera-icon">📷</text>
+      <text class="camera-text">点击拍照</text>
+    </view>
+    <view class="camera-btn choose-btn" bindtap="choosePhoto">
+      <text class="camera-icon">🖼️</text>
+      <text class="camera-text">从相册选择</text>
+    </view>
+  </view>
+</view>

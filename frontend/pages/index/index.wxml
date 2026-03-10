@@ -1,0 +1,48 @@
+﻿<view class="container">
+  <view class="header">
+    <text class="title">🦷 口腔AI智能筛查</text>
+    <text class="subtitle">拍照即可检测口腔健康问题</text>
+  </view>
+
+  <view class="card feature-card" bindtap="goCamera">
+    <view class="feature-icon">📷</view>
+    <view class="feature-info">
+      <text class="feature-title">拍照检测</text>
+      <text class="feature-desc">拍一张口腔照片，AI自动分析</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <view class="card feature-card" bindtap="goHistory">
+    <view class="feature-icon">📋</view>
+    <view class="feature-info">
+      <text class="feature-title">历史记录</text>
+      <text class="feature-desc">查看过往检测报告</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <view class="card tips-card">
+    <text class="section-title">📸 拍照小贴士</text>
+    <view class="tip-item">
+      <text class="tip-dot">1.</text>
+      <text>正对镜头，确保面部在画面中</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-dot">2.</text>
+      <text>张大嘴巴，露出牙齿</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-dot">3.</text>
+      <text>光线充足，避免太暗</text>
+    </view>
+    <view class="tip-item">
+      <text class="tip-dot">4.</text>
+      <text>对焦清晰，避免模糊</text>
+    </view>
+  </view>
+
+  <view class="disclaimer">
+    <text class="disclaimer-text">⚠️ 本工具仅供口腔健康初筛，不能替代专业医生诊断</text>
+  </view>
+</view>

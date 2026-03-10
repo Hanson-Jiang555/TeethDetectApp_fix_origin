@@ -1,0 +1,53 @@
+﻿<view class="container">
+  <!-- 总体评分 -->
+  <view class="score-card card">
+    <view class="score-circle severity-{{overallSeverity}}">
+      <text class="score-emoji">{{emoji}}</text>
+      <text class="score-number">{{severityScore}}</text>
+      <text class="score-label">{{severityLabel}}</text>
+    </view>
+  </view>
+
+  <!-- 检测结果详情 -->
+  <view class="card" wx:if="{{detections.length > 0}}">
+    <text class="section-title">🔍 检测详情</text>
+    <view class="detection-item" wx:for="{{detections}}" wx:key="index">
+      <view class="det-header">
+        <text class="det-class">{{item.class_name}}</text>
+        <view class="severity-tag severity-{{item.severity}}">
+          <text>{{item.severityLabel}}</text>
+        </view>
+      </view>
+      <view class="det-bar">
+        <view class="det-bar-fill" style="width: {{item.confidence * 100}}%"></view>
+      </view>
+      <text class="det-conf">置信度: {{(item.confidence * 100).toFixed(1)}}%</text>
+    </view>
+  </view>
+
+  <!-- 未检测到问题 -->
+  <view class="card" wx:if="{{detections.length === 0}}">
+    <view class="empty-result">
+      <text class="empty-icon">🎉</text>
+      <text class="empty-text">恭喜！未检测到明显口腔问题</text>
+      <text class="empty-sub">请保持良好的口腔卫生习惯</text>
+    </view>
+  </view>
+
+  <!-- 医生建议 -->
+  <view class="card advice-card">
+    <text class="section-title">👨‍⚕️ 建议</text>
+    <text class="advice-text">{{advice}}</text>
+    <text class="detail-text" wx:if="{{detail}}">{{detail}}</text>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions">
+    <view class="btn-primary" bindtap="goCamera">重新检测</view>
+    <view class="btn-secondary bottom-btn" bindtap="goHome">返回首页</view>
+  </view>
+
+  <view class="disclaimer">
+    <text>⚠️ 以上结果仅供参考，不能替代专业医生诊断</text>
+  </view>
+</view>

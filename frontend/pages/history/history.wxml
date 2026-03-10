@@ -1,0 +1,30 @@
+﻿<view class="container">
+  <view wx:if="{{history.length === 0}}" class="empty">
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">暂无检测记录</text>
+    <text class="empty-sub">去拍照检测你的口腔健康吧</text>
+    <view class="btn-primary" style="margin-top:40rpx;width:60%;" bindtap="goCamera">去检测</view>
+  </view>
+
+  <view wx:else>
+    <view class="card history-card" wx:for="{{history}}" wx:key="index" bindtap="viewDetail" data-index="{{index}}">
+      <view class="history-header">
+        <view class="history-severity severity-{{item.overall_severity}}">
+          <text>{{item.emoji || severityEmoji(item.overall_severity)}}</text>
+        </view>
+        <view class="history-info">
+          <text class="history-title">{{severityLabel(item.overall_severity)}}</text>
+          <text class="history-time">{{item.timestamp}}</text>
+        </view>
+        <text class="arrow">›</text>
+      </view>
+      <view class="history-detections" wx:if="{{item.detected_classes && item.detected_classes.length > 0}}">
+        <text class="tag" wx:for="{{item.detected_classes}}" wx:for-item="cls" wx:key="*this">{{cls}}</text>
+      </view>
+    </view>
+
+    <view class="clear-btn" bindtap="clearHistory">
+      <text>🗑️ 清除全部记录</text>
+    </view>
+  </view>
+</view>

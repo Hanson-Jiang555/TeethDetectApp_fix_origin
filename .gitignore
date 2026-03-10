@@ -1,0 +1,71 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# 数据文件（太大不上传）
+data/raw/
+data/processed/
+data/augmented/
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.gif
+
+# 模型权重（太大不上传）
+models/*.pt
+models/*.onnx
+models/*.engine
+*.pt
+*.pth
+*.weights
+
+# 训练输出
+runs/
+wandb/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+backend.log
+backend_error.log
+
+# Docker
+.docker/
+
+# 微信小程序
+frontend/miniprogram_npm/
+frontend/node_modules/
+frontend/.tea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+*.tmp
+*.bak
+clipboard-temp.png

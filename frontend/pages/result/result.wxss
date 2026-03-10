@@ -1,0 +1,37 @@
+﻿.score-card { text-align: center; padding: 50rpx 30rpx; }
+.score-circle {
+  display: inline-flex; flex-direction: column; align-items: center;
+  width: 240rpx; height: 240rpx; border-radius: 50%;
+  justify-content: center; margin: 0 auto;
+}
+.score-circle.severity-healthy { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 4rpx solid #4caf50; }
+.score-circle.severity-mild { background: linear-gradient(135deg, #fff8e1, #ffecb3); border: 4rpx solid #ffc107; }
+.score-circle.severity-medium { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 4rpx solid #ff9800; }
+.score-circle.severity-severe { background: linear-gradient(135deg, #fce4ec, #f8bbd0); border: 4rpx solid #e91e63; }
+.score-emoji { font-size: 48rpx; }
+.score-number { font-size: 64rpx; font-weight: 800; color: #333; }
+.score-label { font-size: 28rpx; color: #666; }
+.detection-item { padding: 20rpx 0; border-bottom: 1rpx solid #f5f5f5; }
+.det-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.det-class { font-size: 30rpx; font-weight: 600; color: #333; }
+.severity-tag {
+  padding: 4rpx 16rpx; border-radius: 20rpx; font-size: 22rpx;
+}
+.severity-tag.severity-healthy { background: #e8f5e9; color: #4caf50; }
+.severity-tag.severity-mild { background: #fff8e1; color: #f9a825; }
+.severity-tag.severity-medium { background: #fff3e0; color: #ef6c00; }
+.severity-tag.severity-severe { background: #fce4ec; color: #c62828; }
+.det-bar { height: 8rpx; background: #f0f0f0; border-radius: 4rpx; overflow: hidden; }
+.det-bar-fill { height: 100%; background: linear-gradient(90deg, #4A90D9, #357ABD); border-radius: 4rpx; }
+.det-conf { font-size: 22rpx; color: #999; margin-top: 8rpx; display: block; }
+.empty-result { text-align: center; padding: 40rpx; }
+.empty-icon { font-size: 80rpx; display: block; }
+.empty-text { display: block; font-size: 32rpx; font-weight: 600; color: #333; margin: 20rpx 0 12rpx; }
+.empty-sub { display: block; font-size: 26rpx; color: #999; }
+.advice-card { margin-bottom: 24rpx; }
+.advice-text { display: block; font-size: 28rpx; color: #333; line-height: 1.8; }
+.detail-text { display: block; font-size: 24rpx; color: #999; margin-top: 16rpx; line-height: 1.6; }
+.bottom-actions { margin-top: 20rpx; }
+.bottom-btn { background: #f0f0f0; color: #666; margin-top: 16rpx; }
+.disclaimer { text-align: center; padding: 20rpx; }
+.disclaimer text { font-size: 20rpx; color: #cc6666; }
