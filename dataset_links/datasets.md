@@ -1,4 +1,4 @@
-﻿# 📦 公开数据集 & 预训练模型汇总
+# 📦 公开数据集 & 预训练模型汇总
 
 ## ⭐ 快速上手推荐（最快方案）
 
@@ -14,7 +14,7 @@
 
 ### 方案2: 用脚本自动准备
 `ash
-cd D:\4444444\Claw_fix
+cd D:\4444444\SmileGuard
 python scripts/prepare_data.py  # 会自动复制现有数据并转为多类别格式
 python scripts/augment_data.py  # 数据增强
 python scripts/train_model.py   # 开始训练

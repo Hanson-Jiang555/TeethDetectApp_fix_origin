@@ -1,4 +1,4 @@
-﻿// app.js
+// app.js
 App({
   globalData: {
     baseUrl: 'http://localhost:8000',  // 后端地址，部署时改为实际地址

@@ -1,5 +1,5 @@
-﻿{
-  "description": "口腔AI智能筛查小程序",
+{
+  "description": "护齿管家 - 口腔AI智能筛查小程序",
   "packOptions": { "ignore": [] },
   "setting": {
     "urlCheck": false,
@@ -29,6 +29,6 @@
   "compileType": "miniprogram",
   "libVersion": "3.3.4",
   "appid": "",
-  "projectname": "ClawFix-Dental",
+  "projectname": "SmileGuard护齿管家",
   "condition": {}
 }

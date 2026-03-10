@@ -1,8 +1,8 @@
-﻿import os, argparse, json
+import os, argparse, json
 
 def main():
     print("=" * 60)
-    print("🦷 Claw Fix - 口腔数据集收集工具")
+    print("🦷 SmileGuard 护齿管家 - 口腔数据集收集工具")
     print("=" * 60)
     
     datasets = {

@@ -1,4 +1,4 @@
-﻿import os
+import os
 import io
 import base64
 import uuid
@@ -18,7 +18,7 @@ from core.face_check import FaceChecker
 from core.rule_engine import calculate_severity
 
 app = FastAPI(
-    title="🦷 Claw Fix - 口腔AI筛查API",
+    title="🦷 SmileGuard 护齿管家 - 口腔AI检测API",
     description="拍照 → 检测 → 报告",
     version="2.0.0"
 )
@@ -61,7 +61,7 @@ def read_image(file_bytes):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "Claw Fix Dental API", "version": "2.0.0"}
+    return {"status": "ok", "service": "SmileGuard 护齿管家 Dental API", "version": "2.0.0"}
 
 @app.post("/api/check-photo")
 async def check_photo(file: UploadFile = File(...)):

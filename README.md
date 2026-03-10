@@ -1,4 +1,4 @@
-# 🦷 Claw Fix — 口腔AI智能筛查系统
+# 🦷 SmileGuard 护齿管家 — 口腔AI智能筛查系统
 
 > 微信小程序 + FastAPI后端 + YOLO多类别检测，拍照即可筛查口腔问题
 
@@ -25,7 +25,7 @@
 
 ## 📖 关于本项目
 
-**Claw Fix** 是一款面向普通用户的**居家口腔健康AI初筛工具**，以微信小程序为载体，用户只需用手机拍一张牙齿照片，系统即可自动识别潜在的口腔问题并给出建议。
+**SmileGuard 护齿管家** 是一款面向普通用户的**居家口腔健康AI初筛工具**，以微信小程序为载体，用户只需用手机拍一张牙齿照片，系统即可自动识别潜在的口腔问题并给出建议。
 
 ### 为什么做这个项目？
 
@@ -70,7 +70,7 @@
 ## 📁 项目结构
 
 ```
-Claw_fix/
+SmileGuard/
 ├── README.md                    # 项目说明文件
 ├── .gitignore                   # Git忽略规则
 ├── setup.bat                    # Windows一键环境安装脚本
@@ -132,8 +132,8 @@ Claw_fix/
 
 ```bash
 # 创建虚拟环境（推荐）
-conda create -n clawfix python=3.10
-conda activate clawfix
+conda create -n smileguard python=3.10
+conda activate smileguard
 
 # 安装核心依赖
 pip install ultralytics opencv-python pillow mediapipe
@@ -150,7 +150,7 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 #### 方案A: 先用现有数据跑通（快速验证）
 
 ```bash
-cd D:\4444444\Claw_fix
+cd D:\4444444\SmileGuard
 python scripts/prepare_data.py
 python scripts/augment_data.py --multiplier 5
 ```
@@ -213,7 +213,7 @@ python scripts/augment_data.py --input data/processed --output data/augmented --
 ### Step 2: 训练模型
 
 ```bash
-cd D:\4444444\Claw_fix
+cd D:\4444444\SmileGuard
 
 # 用现有模型微调（推荐，收敛快）
 python scripts/train_model.py --finetune --epochs 100 --batch 16
@@ -248,7 +248,7 @@ runs/segment/train/weights/best.pt  → 自动复制到 models/dental_detector_v
 ### Step 3: 启动后端
 
 ```bash
-cd D:\4444444\Claw_fix\backend
+cd D:\4444444\SmileGuard\backend
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
@@ -291,10 +291,10 @@ baseUrl: 'https://your-domain.com'  // 部署后的线上地址
 **快速部署（Docker）：**
 
 ```bash
-cd D:\4444444\Claw_fix\backend
-docker build -t clawfix-api .
-docker run -d -p 8000:8000 --gpus all clawfix-api  # GPU版
-docker run -d -p 8000:8000 clawfix-api              # CPU版
+cd D:\4444444\SmileGuard\backend
+docker build -t smileguard-api .
+docker run -d -p 8000:8000 --gpus all smileguard-api  # GPU版
+docker run -d -p 8000:8000 smileguard-api              # CPU版
 ```
 
 ---

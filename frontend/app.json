@@ -1,4 +1,4 @@
-﻿{
+{
     "pages":  [
                   "pages/index/index",
                   "pages/camera/camera",
@@ -8,7 +8,7 @@
     "window":  {
                    "backgroundTextStyle":  "light",
                    "navigationBarBackgroundColor":  "#4A90D9",
-                   "navigationBarTitleText":  "🦷 口腔AI筛查",
+                   "navigationBarTitleText":  "🦷 护齿管家",
                    "navigationBarTextStyle":  "white"
                },
     "style":  "v2",
